@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neighborhood Safety App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            max-width: 200px;
+            margin: 20px auto;
+            padding: 10px 20px;
+            text-align: center;
+            color: #fff;
+            background-color: #ff69b4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #d64696;
+        }
+        .menu {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        .menu a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="welcome" class="container">
+        <h1>Welcome to the Neighborhood Safety App</h1>
+        <button onclick="showSection('signup')" class="btn">Sign Up</button>
+        <button onclick="showSection('login')" class="btn">Log In</button>
+    </div>
+
+    <div id="signup" class="container hidden">
+        <h1>Sign Up</h1>
+        <form onsubmit="return redirectToConcern()">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+    </div>
+
+    <div id="login" class="container hidden">
+        <h1>Log In</h1>
+        <form onsubmit="return redirectToConcern()">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit" class="btn">Log In</button>
+        </form>
+    </div>
+
+    <div id="submit-concern" class="container hidden">
+        <h1>Submit Your Concern</h1>
+        <form action="/submit_concern" method="post">
+            <label for="concern">Enter Your Concern:</label>
+            <textarea id="concern" name="concern" required></textarea>
+            <button type="submit" class="btn" style="background-color: #007bff;">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.getElementById('welcome').style.display = 'none';
+            document.getElementById('signup').classList.add('hidden');
+            document.getElementById('login').classList.add('hidden');
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function redirectToConcern() {
+            document.getElementById('signup').classList.add('hidden');
+            document.getElementById('login').classList.add('hidden');
+            document.getElementById('submit-concern').classList.remove('hidden');
+            window.location.href = "#submit-concern";
+            return false; // Prevent default form submission
+        }
+    </script>
+
+</body>
+</html>
